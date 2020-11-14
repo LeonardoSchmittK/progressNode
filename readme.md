@@ -1,8 +1,21 @@
-# Console color with Chalk
+# Progress bar with node
 
-`npm install chalk`
+`npm install progress`
 
 ```
-const chalk = require('chalk');
-console.log(chalk.yellow('Hi There!'));
+const bar = new ProgressBar(":bar :percent :eta", {
+  total: 20,
+  clear: true,
+  complete: "/",
+  incomplete: "_",
+});
+const log = console.log;
+const time = setInterval(() => {
+  bar.tick();
+  // log("LOADING...");
+  if (bar.complete) {
+    clearInterval(time);
+    log(chalk.green(text()));
+  }
+}, 200);
 ```
